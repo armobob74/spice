@@ -30,7 +30,7 @@ stylesheet: /css/index.css
     {% endif %}
     <tr>
         <td>{{ row['Label'] }}</td>
-        <td>{{ row['Danger Level'] }}</td>
+	<td class="danger-{{row['Danger Level']}}">{{ row['Danger Level'] }}</td>
         <td>{{ row['Category'] }}</td>
     </tr>
 {% endfor %}
@@ -67,3 +67,4 @@ function filterTable(inpt_id,col) {
     }
 }
 </script>
+

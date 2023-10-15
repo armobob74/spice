@@ -1,1 +1,11 @@
-$example-variable: 10px; //just here so I remember how to declare variables lol
+$danger-0-bg: #a8e6cf; /* Soft Green */
+$danger-1-bg: #ffd3b6; /* Soft Yellow */
+$danger-2-bg: #ffaaa5; /* Soft Orange */
+$danger-3-bg: #d32f2f; /* Deep Red */
+$danger-4-bg: #690000; /* Dark Red */
+
+$danger-0-txt: #004d40; /* Dark Greenish-Black: High contrast with soft green */
+$danger-1-txt: #8a4b00; /* Dark Brown: To contrast with the soft yellow */
+$danger-2-txt: #5a2c2c; /* Dark Reddish-Brown: High contrast with soft orange */
+$danger-3-txt: #ffffff; /* White: Clear legibility against deep red */
+$danger-4-txt: #ffffff; /* White: Clear legibility against dark red */
