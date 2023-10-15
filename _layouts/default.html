@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="{{ page.stylesheet }}">
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+    <h1>{{ page.title }}</h1>
+    <section>
+      {{ content }}
+    </section>
+    <footer>
+      &copy; to me
+    </footer>
+  </body>
+</html>

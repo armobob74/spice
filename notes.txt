@@ -1,0 +1,7 @@
+Where the data comes from: https://www.consumerreports.org/health/food-safety/your-herbs-and-spices-might-contain-arsenic-cadmium-and-lead-a6246621494/
+Automatically scraped by a script that's stored in ~/scraping/scrape_cr
+
+deciding to use Jekyll because:
+	1) it's simple and made for static site rendering
+	2) similar to jinja2
+	3) easy to use from Linux, unlike Svelte

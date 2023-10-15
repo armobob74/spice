@@ -1,2 +1,6 @@
-__pycache__
 notes.txt
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor

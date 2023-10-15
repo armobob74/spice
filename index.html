@@ -1,0 +1,69 @@
+---
+layout: default
+title: "home"
+stylesheet: /css/index.css
+---
+
+<table>
+{% for row in site.data.spice_data %}
+    {% if forloop.first %}
+        <thead>
+		<th>
+		<div>
+		<label for="filter-label">Label</label>
+		<input type="text" name="filter-label" id="filter-label" oninput="filterLabel()" placeholder="filter...">
+		</div>
+		</th>
+		<th>
+		<div>
+		<label for="filter-danger">Danger Level</label>
+		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterDanger()" placeholder="filter...">
+		</th>
+		</div>
+		<th>
+		<div>
+		<label for="filter-category">Category</label>
+		<input type="text" name="filter-category" id="filter-category" oninput="filterCategory()" placeholder="filter...">
+		</th>
+		<div>
+	</thead>
+    {% endif %}
+    <tr>
+        <td>{{ row['Label'] }}</td>
+        <td>{{ row['Danger Level'] }}</td>
+        <td>{{ row['Category'] }}</td>
+    </tr>
+{% endfor %}
+</table>
+<script>
+function filterLabel(){
+	filterTable("filter-label",0)
+}
+function filterDanger(){
+	filterTable("filter-danger",1)
+}
+function filterCategory(){
+	filterTable("filter-category",2)
+}
+function filterTable(inpt_id,col) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(inpt_id);
+    filter = input.value.toUpperCase();
+     console.log(filter);
+    table = document.querySelector("table");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[col];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
+</script>

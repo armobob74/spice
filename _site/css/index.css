@@ -1,0 +1,17 @@
+body {
+  padding: 10px;
+}
+
+th div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+th div input {
+  width: max(40%, 6ex);
+}
+th div input:focus {
+  right: 40px;
+}
+
+/*# sourceMappingURL=index.css.map */

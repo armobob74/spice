@@ -1,0 +1,22 @@
+---
+---
+@import "variables";
+body {
+	padding:10px;
+}
+
+th {
+
+	div {
+		display:flex;
+		flex-direction:row;
+		justify-content: space-between;
+		input {
+			width:max(40%,6ex);
+		}
+		input:focus{
+			right:40px;
+		}
+	}
+}
+
