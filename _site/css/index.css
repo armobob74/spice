@@ -37,6 +37,12 @@ td.danger-4 {
   background-color: #690000;
 }
 
+td span.highlight {
+  font-weight: bold;
+  color: inherit;
+  background-color: inherit;
+}
+
 th div {
   display: flex;
   flex-direction: row;

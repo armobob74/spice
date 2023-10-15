@@ -25,6 +25,12 @@ td.danger-4 {
 	color:$danger-4-txt;
 	background-color:$danger-4-bg;
 }
+
+td span.highlight{
+	font-weight:bold;
+	color:inherit;
+	background-color:inherit;
+}
 th {
 
 	div {

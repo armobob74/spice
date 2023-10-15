@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "home"
+title: "Spice Safety"
 stylesheet: /css/index.css
 ---
 
@@ -45,7 +45,7 @@ function filterDanger(){
 function filterCategory(){
 	filterTable("filter-category",2)
 }
-function filterTable(inpt_id,col) {
+function old_filterTable(inpt_id,col) {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById(inpt_id);
     filter = input.value.toUpperCase();
@@ -66,5 +66,44 @@ function filterTable(inpt_id,col) {
         }       
     }
 }
+
+function filterTable(inpt_id, col) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(inpt_id);
+    filter = input.value.toUpperCase();
+    table = document.querySelector("table");
+    tr = table.getElementsByTagName("tr");
+
+    // Remove any existing highlights
+    document.querySelectorAll(".highlight").forEach(highlight => {
+        var parent = highlight.parentNode;
+        while (highlight.firstChild) {
+            parent.insertBefore(highlight.firstChild, highlight);
+        }
+        parent.removeChild(highlight);
+    });
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[col];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                // Highlight matched text
+                if (filter) {
+                    var innerHTML = td.innerHTML;
+                    var index = innerHTML.toUpperCase().indexOf(filter);
+                    if (index >= 0) {
+                        innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+filter.length) + "</span>" + innerHTML.substring(index + filter.length);
+                        td.innerHTML = innerHTML;
+                    }
+                }
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
+
 </script>
 
