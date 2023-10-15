@@ -20,7 +20,7 @@
 
 title: Your awesome title
 email: your-email@example.com
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/spice" # the subpath on neversayvery, where the project is temporarily stored
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
