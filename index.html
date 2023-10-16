@@ -38,7 +38,7 @@ stylesheet: /css/index.css
 	</thead>
     {% endif %}
     <tr>
-        <td>{{ row['Label'] }}</td>
+	    <td id="{{row['Label'] | replace: ' ', '-'}}">{{ row['Label'] }}</td>
 	<td class="danger-{{ row['Danger Level'] }}">{{ row['Danger Level'] }}</td>
         <td>{{ row['Category'] }}</td>
     </tr>
@@ -56,16 +56,21 @@ function removeExistingHighlights() {
     });
 }
 
-function highlightText(td, filter) {
-    const innerHTML = td.innerHTML;
-    const index = innerHTML.toUpperCase().indexOf(filter);
+function highlightText(textContainer, filter) {
+    const textContent = textContainer.textContent || textContainer.innerText;
+    const index = textContent.toUpperCase().indexOf(filter.toUpperCase());
+
     if (index >= 0) {
-        td.innerHTML =
-            innerHTML.substring(0, index) +
+        let beforeMatch = textContent.substring(0, index);
+        let match = textContent.substring(index, index + filter.length);
+        let afterMatch = textContent.substring(index + filter.length);
+        
+        textContainer.innerHTML = 
+            beforeMatch +
             "<span class='highlight'>" +
-            innerHTML.substring(index, index + filter.length) +
+            match +
             "</span>" +
-            innerHTML.substring(index + filter.length);
+            afterMatch;
     }
 }
 
