@@ -10,48 +10,26 @@ table {
 	width:100%;
 }
 
-td.danger .container {
-	display:flex;
-	height:100%;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
-td.danger.danger-0 {
+td.danger-0 {
 	color:$danger-0-txt;
 	background-color:$danger-0-bg;
-	.container::before{
-		content: "Safe";
-	}
 }
-td.danger.danger-1 {
+td.danger-1 {
 	color:$danger-1-txt;
 	background-color:$danger-1-bg;
-	.container::before{
-		content: "Unsafe to children";
-	}
 }
 
-td.danger.danger-2 {
+td.danger-2 {
 	color:$danger-2-txt;
 	background-color:$danger-2-bg;
-	.container::before{
-		content: "Some concern for adults";
-	}
 }
-td.danger.danger-3 {
+td.danger-3 {
 	color:$danger-3-txt;
 	background-color:$danger-3-bg;
-	.container::before{
-		content: "Concern for adults";
-	}
 }
-td.danger.danger-4 {
+td.danger-4 {
 	color:$danger-4-txt;
 	background-color:$danger-4-bg;
-	.container::before{
-		content: "High concern for adults";
-	}
 }
 
 td span.highlight{

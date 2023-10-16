@@ -39,16 +39,7 @@ stylesheet: /css/index.css
     {% endif %}
     <tr>
         <td>{{ row['Label'] }}</td>
-	{% assign danger_level = row['Danger Level'] %}
-	<td class="danger danger-{{ danger_level }}">
-		<div class="container">
-			<strong class="warnings">
-				{% for i in (1..danger_level) %}
-				!
-				{% endfor %}
-			</strong>
-		</div>
-	</td>
+	<td class="danger-{{ row['Danger Level'] }}">{{ row['Danger Level'] }}</td>
         <td>{{ row['Category'] }}</td>
     </tr>
 {% endfor %}
