@@ -1,0 +1,24 @@
+$mobile-header-font-size: 6vw;
+$mobile-th-font-size: 4vw;
+$mobile-td-font-size: 4vw;
+
+@media only screen and (max-device-width: 800px) {
+	h1 {
+	font-size:$mobile-header-font-size;
+
+	}
+	th div{
+		flex-direction:column;
+		label {
+			font-size: $mobile-th-font-size;
+		}
+		input {
+			width: 90%;
+			font-size: $mobile-th-font-size;
+		}
+	}
+	th, td{
+		font-size: $mobile-td-font-size;
+	}
+
+}

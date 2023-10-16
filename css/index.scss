@@ -2,7 +2,12 @@
 ---
 @import "variables";
 body {
-	padding:10px;
+	width:100%;
+}
+
+table {
+	table-layout:fixed; // make it so that table does not expand beyond edges if content too big
+	width:100%;
 }
 
 td.danger-0 {
@@ -37,12 +42,16 @@ th {
 		display:flex;
 		flex-direction:row;
 		justify-content: space-between;
-		input {
-			width:max(40%,6ex);
-		}
-		input:focus{
-			right:40px;
+		@media (min-width: 768px) {
+			input {
+				width:max(40%,6ex);
+			}
+			input:focus{
+				right:40px;
+			}
+
 		}
 	}
 }
 
+@import "mobile"; //it's down here for cascading purposes
