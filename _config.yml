@@ -20,8 +20,8 @@
 
 title: Your awesome title
 email: your-email@example.com
-baseurl: "/spice" # the subpath on neversayvery, where the project is temporarily stored
-url: "https://neversayvery.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath on neversayvery, where the project is temporarily stored
+url: "https://saferspices.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: minima
