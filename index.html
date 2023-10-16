@@ -10,19 +10,28 @@ stylesheet: /css/index.css
         <thead>
 		<th>
 		<div>
-		<label for="filter-label">Label</label>
+		<div>
+			<button class="sort-by" type="button" onclick="sortBy(1)"></button>
+			<label for="filter-label">Label</label>
+		</div>
 		<input type="text" name="filter-label" id="filter-label" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
 		<th>
 		<div>
-		<label for="filter-danger">Danger Level</label>
+		<div>
+			<button class="sort-by" type="button" onclick="sortBy(1)"></button>
+			<label for="filter-danger">Danger Level</label>
+		</div>
 		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
 		<th>
 		<div>
-		<label for="filter-category">Category</label>
+		<div>
+			<button class="sort-by" type="button" onclick="sortBy(2)"></button>
+			<label for="filter-category">Category</label>
+		</div>
 		<input type="text" name="filter-category" id="filter-category" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
@@ -108,6 +117,31 @@ function filterTable() {
 
         tr[i].style.display = shouldDisplay ? "" : "none";
     }
+}
+
+let sortOrder = 1; // Initialize sort order. 1: ascending, -1: descending
+
+function sortBy(col) {
+    const table = document.querySelector("table");
+    const tbody = table.getElementsByTagName("tbody")[0];
+    const rows = Array.from(tbody.getElementsByTagName("tr"));
+
+    // Toggle sort order
+    sortOrder = -sortOrder;
+
+    // Sort rows
+    const sortedRows = rows.sort((a, b) => {
+        const aText = a.getElementsByTagName("td")[col].innerText || a.getElementsByTagName("td")[col].textContent;
+        const bText = b.getElementsByTagName("td")[col].innerText || b.getElementsByTagName("td")[col].textContent;
+        return aText.localeCompare(bText, undefined, { numeric: true }) * sortOrder;
+    });
+
+    // Append sorted rows
+    for (const row of sortedRows) {
+        tbody.appendChild(row);
+    }
+
+    removeExistingHighlights(); // You might want to remove highlights when sorting
 }
 
 </script>
