@@ -9,8 +9,12 @@ $mobile-td-font-size: 4vw;
 	}
 	th div{
 		flex-direction:column;
-		label {
-			font-size: $mobile-th-font-size;
+		div.label-holder{
+			flex-direction:row;
+			justify-content: start;
+			label {
+				font-size: $mobile-th-font-size;
+			}
 		}
 		input {
 			width: 90%;

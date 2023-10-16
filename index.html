@@ -10,8 +10,8 @@ stylesheet: /css/index.css
         <thead>
 		<th>
 		<div>
-		<div>
-			<button class="sort-by" type="button" onclick="sortBy(1)"></button>
+		<div class="label-holder">
+			{% include sort_button.html col=0%}
 			<label for="filter-label">Label</label>
 		</div>
 		<input type="text" name="filter-label" id="filter-label" oninput="filterTable()" placeholder="filter...">
@@ -19,8 +19,8 @@ stylesheet: /css/index.css
 		</th>
 		<th>
 		<div>
-		<div>
-			<button class="sort-by" type="button" onclick="sortBy(1)"></button>
+		<div class="label-holder">
+			{% include sort_button.html col=1%}
 			<label for="filter-danger">Danger Level</label>
 		</div>
 		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterTable()" placeholder="filter...">
@@ -28,8 +28,8 @@ stylesheet: /css/index.css
 		</th>
 		<th>
 		<div>
-		<div>
-			<button class="sort-by" type="button" onclick="sortBy(2)"></button>
+		<div class="label-holder">
+			{% include sort_button.html col=2%}
 			<label for="filter-category">Category</label>
 		</div>
 		<input type="text" name="filter-category" id="filter-category" oninput="filterTable()" placeholder="filter...">
