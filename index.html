@@ -11,19 +11,19 @@ stylesheet: /css/index.css
 		<th>
 		<div>
 		<label for="filter-label">Label</label>
-		<input type="text" name="filter-label" id="filter-label" oninput="filterLabel()" placeholder="filter...">
+		<input type="text" name="filter-label" id="filter-label" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
 		<th>
 		<div>
 		<label for="filter-danger">Danger Level</label>
-		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterDanger()" placeholder="filter...">
+		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
 		<th>
 		<div>
 		<label for="filter-category">Category</label>
-		<input type="text" name="filter-category" id="filter-category" oninput="filterCategory()" placeholder="filter...">
+		<input type="text" name="filter-category" id="filter-category" oninput="filterTable()" placeholder="filter...">
 		</div>
 		</th>
 	</thead>
@@ -36,15 +36,6 @@ stylesheet: /css/index.css
 {% endfor %}
 </table>
 <script>
-function filterLabel(){
-	filterTable("filter-label",0)
-}
-function filterDanger(){
-	filterTable("filter-danger",1)
-}
-function filterCategory(){
-	filterTable("filter-category",2)
-}
 
 function removeExistingHighlights() {
     document.querySelectorAll(".highlight").forEach(highlight => {
@@ -81,18 +72,34 @@ function filterAndHighlightRow(tr, td, filter) {
     }
 }
 
-function filterTable(inpt_id, col) {
-    const input = document.getElementById(inpt_id);
-    const filter = input.value.toUpperCase();
+function filterTable() {
     const table = document.querySelector("table");
     const tr = table.getElementsByTagName("tr");
+    const filters = document.querySelectorAll("input[id^='filter-']");
 
     removeExistingHighlights();
 
-    for (let i = 0; i < tr.length; i++) {
-        const td = tr[i].getElementsByTagName("td")[col];
-        filterAndHighlightRow(tr[i], td, filter);
+    for (let i = 1; i < tr.length; i++) {
+        let tds = tr[i].getElementsByTagName("td");
+        let shouldDisplay = true;
+
+        filters.forEach((filterInput, idx) => {
+            const filterText = filterInput.value.toUpperCase();
+            const td = tds[idx];
+
+            let columnMatches = !filterText || (td && td.textContent.toUpperCase().indexOf(filterText) > -1);
+            if (filterText && td) {
+                highlightText(td, filterText);
+            }
+
+            if (!columnMatches) {
+                shouldDisplay = false;
+            }
+        });
+
+        tr[i].style.display = shouldDisplay ? "" : "none";
     }
 }
+
 </script>
 
