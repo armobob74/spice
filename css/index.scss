@@ -13,23 +13,38 @@ table {
 td.danger-0 {
 	color:$danger-0-txt;
 	background-color:$danger-0-bg;
+	&:after{
+		content:" (Safe)";
+	}
 }
 td.danger-1 {
 	color:$danger-1-txt;
 	background-color:$danger-1-bg;
+	&:after{
+		content:" (Unsafe for children)";
+	}
 }
 
 td.danger-2 {
 	color:$danger-2-txt;
 	background-color:$danger-2-bg;
+	&:after{
+		content:" (Some concern for adults)";
+	}
 }
 td.danger-3 {
 	color:$danger-3-txt;
 	background-color:$danger-3-bg;
+	&:after{
+		content:" (Concern for adults)";
+	}
 }
 td.danger-4 {
 	color:$danger-4-txt;
 	background-color:$danger-4-bg;
+	&:after{
+		content:" (Unsafe for all)";
+	}
 }
 
 td span.highlight{

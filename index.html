@@ -21,7 +21,7 @@ stylesheet: /css/index.css
 		<div>
 		<div class="label-holder">
 			{% include sort_button.html col=1%}
-			<label for="filter-danger">Danger Level</label>
+			<label for="filter-danger">Heavy Metal Content</label>
 		</div>
 		<input type="text" min="0" max="4" name="filter-danger" id="filter-danger" oninput="filterTable()" placeholder="filter...">
 		</div>
@@ -39,7 +39,7 @@ stylesheet: /css/index.css
     {% endif %}
     <tr>
 	    <td id="{{row['Label'] | replace: ' ', '-'}}">{{ row['Label'] }}</td>
-	<td class="danger-{{ row['Danger Level'] }}">{{ row['Danger Level'] }}</td>
+	<td class="danger-{{ row['Danger Level'] }}">Level {{ row['Danger Level'] }}</td>
         <td>{{ row['Category'] }}</td>
     </tr>
 {% endfor %}
