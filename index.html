@@ -5,8 +5,6 @@ stylesheet: /css/index.css
 ---
 
 <table>
-{% for row in site.data.spice_data %}
-    {% if forloop.first %}
         <thead>
 		<th>
 		<div>
@@ -36,13 +34,15 @@ stylesheet: /css/index.css
 		</div>
 		</th>
 	</thead>
-    {% endif %}
+	<tbody>
+{% for row in site.data.spice_data %}
     <tr>
-	    <td id="{{row['Label'] | replace: ' ', '-'}}">{{ row['Label'] }}</td>
+	<td id="{{row['Label'] | replace: ' ', '-'}}">{{ row['Label'] }}</td>
 	<td class="danger-{{ row['Danger Level'] }}">Level {{ row['Danger Level'] }}</td>
         <td>{{ row['Category'] }}</td>
     </tr>
 {% endfor %}
+</tbody>
 </table>
 <script>
 
