@@ -117,8 +117,6 @@ function filterTable() {
     }
 }
 
-//let sortOrder = 1; // Initialize sort order. 1: ascending, -1: descending
-
 document.querySelectorAll('button.sort-button').forEach((sort_btn) => sort_btn.addEventListener('click', () => {
     const col = Number(sort_btn.getAttribute('col'));
     const table = document.querySelector("table");
