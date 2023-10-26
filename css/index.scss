@@ -1,6 +1,7 @@
 ---
 ---
 @import "variables";
+@import "sort_button";
 body {
 	width:100%;
 }
@@ -58,19 +59,6 @@ th {
 		display:flex;
 		flex-direction:row;
 		justify-content: space-between;
-		div.label-holder{
-			button.sort-button{
-				background:none;
-				border:none;
-				border-radius:3px;
-				padding:0px;
-				margin-right:1ex;
-			}
-			button.sort-button:hover{
-				cursor:pointer;
-				color:green;
-			}
-		}
 		@media (min-width: 768px) {
 			input {
 				width:max(40%,6ex);

@@ -7,8 +7,17 @@ $mobile-td-font-size: 4vw;
 	font-size:$mobile-header-font-size;
 
 	}
-	th div{
+	th {
+		padding:0px;
+		margin:0px;
+	}
+	th>div{
+		display:flex;
 		flex-direction:column;
+		justify-content: space-between;
+		flex-grow:1;
+		margin:0;
+		padding:0;
 		div.label-holder{
 			flex-direction:row;
 			justify-content: start;
