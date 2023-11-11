@@ -158,6 +158,23 @@ stylesheet: /css/index.css
     }
   }
 
+  // determine the colors and sort values of the ppb column
+  let elements_need_danger = document.querySelectorAll(".assign-danger-level");
+  for (element of elements_need_danger) {
+    let ppb = parseFloat(element.innerText);
+    let max_ppb = 146000;
+    if (!ppb) {
+      ppb = 0;
+      element.setAttribute("sortval", ppb);
+    } else if (ppb > max_ppb) {
+      ppb = max_ppb; // the highest value on the color-picker interpolation array
+    }
+    let percentile = determinePercentile(ppb);
+    let cell_bg = pickColor(percentile);
+    element.style.backgroundColor = cell_bg;
+    element.style.color = pickTextColor(cell_bg);
+  }
+
   document.querySelectorAll("button.sort-button").forEach((sort_btn) =>
     sort_btn.addEventListener("click", () => {
       const col = Number(sort_btn.getAttribute("col"));
@@ -175,9 +192,11 @@ stylesheet: /css/index.css
 
       const sortedRows = rows.sort((a, b) => {
         const aText =
+          a.getElementsByTagName("td")[col].getAttribute("sortval") ||
           a.getElementsByTagName("td")[col].innerText ||
           a.getElementsByTagName("td")[col].textContent;
         const bText =
+          b.getElementsByTagName("td")[col].getAttribute("sortval") ||
           b.getElementsByTagName("td")[col].innerText ||
           b.getElementsByTagName("td")[col].textContent;
         return (
@@ -190,19 +209,4 @@ stylesheet: /css/index.css
       }
     })
   );
-
-  let elements_need_danger = document.querySelectorAll(".assign-danger-level");
-  for (element of elements_need_danger) {
-    let ppb = parseFloat(element.innerText);
-	  let max_ppb = 146000; 
-    if (!ppb) {
-      ppb = 0;
-    } else if (ppb > max_ppb) {
-	    ppb = max_ppb; // the highest value on the color-picker interpolation array
-    }
-    let percentile = determinePercentile(ppb);
-    let cell_bg =  pickColor(percentile);
-    element.style.backgroundColor = cell_bg;
-    element.style.color = pickTextColor(cell_bg);
-  }
 </script>

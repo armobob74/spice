@@ -3,6 +3,7 @@ the raw output is ugly and also full of duplicate brand names and typos
 this script formats it and removes some of the worst offenders
 """
 import pandas as pd
+from utils import parseFloat
 
 df = pd.read_csv('./ny_spice_data_raw_output.tsv', sep='\t')
 
@@ -20,6 +21,8 @@ df.rename(columns={
         'BRAND': 'Brand',
         },inplace=True
 )
+
+df['RESULT'] = df['RESULT'].apply(parseFloat) # replace all strings with 'None detected'
 
 lead_df = df[df['ANALYTE'] == 'lead']
 lead_df = lead_df.drop('ANALYTE', axis=1)
