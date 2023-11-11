@@ -7,6 +7,8 @@ from utils import parseFloat
 
 df = pd.read_csv('./ny_spice_data_raw_output.tsv', sep='\t')
 
+df = df[::-1] # reverse the order of rows
+
 # Set all string values to lowercase and remove all commas
 df = df.applymap(lambda x: x.lower().replace(',', '') if isinstance(x, str) else x)
 
