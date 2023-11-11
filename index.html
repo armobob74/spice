@@ -75,14 +75,17 @@ stylesheet: /css/index.css
     {% for row in site.data.ny_ag.output.lead_data %}
     <tr>
       <td>{{ row['Test date'] }}</td>
-      <td> {{ row['Product name'] }} </td>
-      <td> {{ row['Brand'] }} </td>
+      <td>{{ row['Product name'] }}</td>
+      <td>{{ row['Brand'] }}</td>
       <!-- class is assigned through JavaScript -->
-      <td class="assign-danger-level"> {{ row['Lead level'] }} </td>
+      <td class="assign-danger-level">{{ row['Lead level'] }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
+<script src="/static/javascript/color_picking.js"></script>
+
 <script>
   function removeExistingHighlights() {
     document.querySelectorAll(".highlight").forEach((highlight) => {
@@ -188,22 +191,18 @@ stylesheet: /css/index.css
     })
   );
 
-  let elements_need_danger = document.querySelectorAll(".assign-danger-level")
-  for(element of elements_need_danger){
-	  let ppb = parseFloat(element.innerText);
-	  let danger_level;
-	  if(!ppb){
-		  danger_level = 0;
-	  } else if(ppb < 150){
-		  danger_level = 1;
-	  } else if(ppb < 300){
-		  danger_level = 2;
-	  } else if(ppb < 1000) {
-		  danger_level = 3;
-	  } else {
-		  danger_level = 4;
-	  }
-
-	  element.classList.add(`danger-${danger_level}`)
+  let elements_need_danger = document.querySelectorAll(".assign-danger-level");
+  for (element of elements_need_danger) {
+    let ppb = parseFloat(element.innerText);
+	  let max_ppb = 146000; 
+    if (!ppb) {
+      ppb = 0;
+    } else if (ppb > max_ppb) {
+	    ppb = max_ppb; // the highest value on the color-picker interpolation array
+    }
+    let percentile = determinePercentile(ppb);
+    let cell_bg =  pickColor(percentile);
+    element.style.backgroundColor = cell_bg;
+    element.style.color = pickTextColor(cell_bg);
   }
 </script>
