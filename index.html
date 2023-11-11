@@ -74,10 +74,9 @@ stylesheet: /css/index.css
   <tbody>
     {% for row in site.data.ny_ag.output.lead_data %}
     <tr>
-      <td>{{ row['Test date'] }}</td>
+      <td class="assign-date-sortval">{{ row['Test date'] }}</td>
       <td>{{ row['Product name'] }}</td>
       <td>{{ row['Brand'] }}</td>
-      <!-- class is assigned through JavaScript -->
       <td class="assign-danger-level">{{ row['Lead level'] }}</td>
     </tr>
     {% endfor %}
@@ -85,7 +84,7 @@ stylesheet: /css/index.css
 </table>
 
 <script src="/static/javascript/color_picking.js"></script>
-
+<script src="/static/javascript/utils.js"></script>
 <script>
   function removeExistingHighlights() {
     document.querySelectorAll(".highlight").forEach((highlight) => {
@@ -209,4 +208,8 @@ stylesheet: /css/index.css
       }
     })
   );
+
+  document.querySelectorAll(".assign-date-sortval").forEach((element) => {
+	  element.setAttribute('sortval', parseDate(element.innerText))
+  });
 </script>
