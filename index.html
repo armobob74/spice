@@ -77,7 +77,8 @@ stylesheet: /css/index.css
       <td>{{ row['Test date'] }}</td>
       <td> {{ row['Product name'] }} </td>
       <td> {{ row['Brand'] }} </td>
-      <td> {{ row['Lead level'] }} </td>
+      <!-- class is assigned through JavaScript -->
+      <td class="assign-danger-level"> {{ row['Lead level'] }} </td>
     </tr>
     {% endfor %}
   </tbody>
@@ -186,4 +187,23 @@ stylesheet: /css/index.css
       }
     })
   );
+
+  let elements_need_danger = document.querySelectorAll(".assign-danger-level")
+  for(element of elements_need_danger){
+	  let ppb = parseFloat(element.innerText);
+	  let danger_level;
+	  if(!ppb){
+		  danger_level = 0;
+	  } else if(ppb < 150){
+		  danger_level = 1;
+	  } else if(ppb < 300){
+		  danger_level = 2;
+	  } else if(ppb < 1000) {
+		  danger_level = 3;
+	  } else {
+		  danger_level = 4;
+	  }
+
+	  element.classList.add(`danger-${danger_level}`)
+  }
 </script>
