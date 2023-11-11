@@ -18,18 +18,19 @@ df.rename(columns={
         'COLDATE': 'Test date',
         'PRODUCT_NAME': 'Product name',
         'BRAND': 'Brand',
-        'ANALYTE': 'Testing for',
-        'RESULT':'Result (ppb)'
         },inplace=True
 )
 
-lead_df = df[df['Testing for'] == 'lead']
-arsenic_df = df[df['Testing for'] == 'arsenic']
-cadmium_df = df[df['Testing for'] == 'cadmium']
+lead_df = df[df['ANALYTE'] == 'lead']
+lead_df = lead_df.drop('ANALYTE', axis=1)
+lead_df = lead_df.rename(columns={'RESULT':'Lead level'})
+
+#arsenic_df = df[df['ANALYTE'] == 'arsenic']
+#cadmium_df = df[df['ANALYTE'] == 'cadmium']
 
 
 if __name__ == "__main__": 
     #df.to_csv('output/all_data.tsv', sep='\t', index=False)
     lead_df.to_csv('output/lead_data.tsv', sep='\t', index=False)
-    arsenic_df.to_csv('output/arsenic_data.tsv', sep='\t', index=False)
-    cadmium_df.to_csv('output/cadmium_data.tsv', sep='\t', index=False)
+    #arsenic_df.to_csv('output/arsenic_data.tsv', sep='\t', index=False)
+    #cadmium_df.to_csv('output/cadmium_data.tsv', sep='\t', index=False)
