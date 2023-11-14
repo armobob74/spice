@@ -10,3 +10,7 @@ $danger-1-txt: #8a4b00; /* Dark Brown: To contrast with the soft yellow */
 $danger-2-txt: #5a2c2c; /* Dark Reddish-Brown: High contrast with soft orange */
 $danger-3-txt: #ffffff; /* White: Clear legibility against deep red */
 $danger-4-txt: #ffffff; /* White: Clear legibility against dark red */
+
+$gradient-angle: 115deg;
+$saferspices-gradient: linear-gradient($gradient-angle, #a8e6cf, #ffd3b6, #ffaaa5, #d32f2f, #690000)
+
