@@ -12,6 +12,12 @@ body {
 
 header {
 	background-color: $bg-light;
+	h1{
+		margin:0;
+	}
+	span {
+		color:rgb(85,85,85);
+	}
 }
 
 table {
