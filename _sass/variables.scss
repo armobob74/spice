@@ -1,4 +1,5 @@
-/*I don't think these danger variables are used anymore, but I like them and may wanna reuse them */
+$bg-light:white;
+
 $danger-0-bg: #a8e6cf; /* Soft Green */
 $danger-1-bg: #ffd3b6; /* Soft Yellow */
 $danger-2-bg: #ffaaa5; /* Soft Orange */
@@ -12,5 +13,5 @@ $danger-3-txt: #ffffff; /* White: Clear legibility against deep red */
 $danger-4-txt: #ffffff; /* White: Clear legibility against dark red */
 
 $gradient-angle: 115deg;
-$saferspices-gradient: linear-gradient($gradient-angle, #a8e6cf, #ffd3b6, #ffaaa5, #d32f2f, #690000)
+$saferspices-gradient: linear-gradient($gradient-angle, #a8e6cf, 30%, #ffd3b6, 60%, #ffaaa5, #d32f2f, 95%,#690000)
 

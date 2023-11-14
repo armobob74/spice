@@ -1,0 +1,23 @@
+---
+---
+
+@import "variables";
+
+$border-width:5px;
+
+#letter-container {
+  background: $bg-light;
+  padding: 1em;
+}
+
+
+//basically a border
+#letter-wrapper{
+	background: $saferspices-gradient;
+	padding:$border-width;
+}
+#letter {
+  //border: solid 1px black;
+  padding: 1em;
+  background-color:$bg-light;
+}

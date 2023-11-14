@@ -1,0 +1,19 @@
+---
+---
+
+@import "variables";
+$border-width: 5px;
+$border-width-mobile: 10px;
+
+
+
+section {
+  padding: 0.5em;
+  #accordion-border {
+    background: $saferspices-gradient;
+    padding: $border-width;
+    #accordion-container {
+      background-color: $bg-light;
+    }
+  }
+}

@@ -7,11 +7,19 @@
 
 body {
   width: 100%;
+	background: $bg-light;
+}
+
+header {
+	background-color: $bg-light;
 }
 
 table {
   table-layout: fixed; // make it so that table does not expand beyond edges if content too big
   width: 100%;
+  tr:nth-child(2n-1){
+	  background-color:$bg-light;
+  }
 }
 
 td span.highlight {

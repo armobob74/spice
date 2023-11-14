@@ -14,12 +14,15 @@ accordion:
     content: If you are a U.S. Citizen, write to <a href="https://www.house.gov/representatives/find-your-representative">your representative</a> in congress. You can also contact the <a href="https://www.fda.gov/about-fda/contact-fda">FDA</a> or the <a href="https://www.usda.gov/contact-us">USDA</a>. Look at <a href="/pages/take-action">our letter template</a> for help on what to say.
 
 layout: default
+stylesheet: /assets/faq.css
 title: FAQ
 header: FAQ
 ---
 
+<div id="accordion-border">
 <div id="accordion-container">
 {% include accordion.html %}
+</div>
 </div>
 <style>
 #accordion-container {
