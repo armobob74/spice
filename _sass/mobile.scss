@@ -1,8 +1,16 @@
-$mobile-header-font-size: 6vw;
-$mobile-th-font-size: 4vw;
-$mobile-td-font-size: 4vw;
+$mobile-header-font-size: 5vw;
+$mobile-root-font-size: 4vw;
+// define in terms of rem instead of vw to preserve zoomability 
+$mobile-th-font-size: 1rem;
+$mobile-td-font-size: 1rem;
 
 @media only screen and (max-device-width: 800px) {
+	:root {
+		font-size:$mobile-root-font-size;
+	}
+	body {
+		font-size: $mobile-td-font-size;
+	}
 	h1 {
 	font-size:$mobile-header-font-size;
 	}
@@ -29,12 +37,4 @@ $mobile-td-font-size: 4vw;
 			font-size: $mobile-th-font-size;
 		}
 	}
-	th, td{
-		font-size: $mobile-td-font-size;
-	}
-
-	nav a {
-		font-size: $mobile-td-font-size;
-	}
-
 }
