@@ -4,20 +4,11 @@
 @import 'minima';
 @import "variables";
 @import "sort_button";
+@import "header";
 
 body {
   width: 100%;
 	background: $bg-light;
-}
-
-header {
-	background-color: $bg-light;
-	h1{
-		margin:0;
-	}
-	span {
-		color:rgb(85,85,85);
-	}
 }
 
 table {

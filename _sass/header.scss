@@ -1,0 +1,16 @@
+@import 'variables';
+header {
+  .active {
+    color: gray;
+  }
+  nav a {
+    color: black;
+  }
+  background-color: $bg-light;
+  h1 {
+    margin: 0;
+  }
+  span {
+    color: rgb(85, 85, 85);
+  }
+}

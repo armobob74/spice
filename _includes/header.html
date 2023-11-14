@@ -1,14 +1,8 @@
 <header>
 	<h1><strong>Safer Spices</strong> <span>{{ include.active }}</span></h1>
   <nav>
-    {% if include.active != 'Database' %}
-    <a href="/">Database</a>
-    {% endif %}
-    {% if include.active != 'FAQ' %}
-    <a href="/pages/faq">FAQ</a>
-    {% endif %}
-    {% if include.active != 'Take Action' %}
-    <a href="/pages/take-action">Take Action</a>
-    {% endif %}
+    <a href="/" {% if include.active == 'Database' %}class="active"{% endif %}>Database</a>
+    <a href="/pages/faq" {% if include.active == 'FAQ' %}class="active"{% endif %}>FAQ</a>
+    <a href="/pages/take-action" {% if include.active == 'Take Action' %}class="active"{% endif %}>Take Action</a>
   </nav>
 </header>
