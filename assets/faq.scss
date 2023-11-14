@@ -3,9 +3,6 @@
 
 @import "variables";
 $border-width: 5px;
-$border-width-mobile: 10px;
-
-
 
 section {
   padding: 0.5em;
@@ -13,6 +10,7 @@ section {
     background: $saferspices-gradient;
     padding: $border-width;
     #accordion-container {
+      padding: 1em;
       background-color: $bg-light;
     }
   }
