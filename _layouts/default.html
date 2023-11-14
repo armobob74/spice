@@ -1,19 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     {% include google_tag.html %}
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>{{ page.title }}</title>
     {% include favicon.html %}
-    <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}" />
   </head>
   <body>
-	  <h1><strong>Safer Spices</strong> Database</h1>
-    <section>
-      {{ content }}
-    </section>
-    <footer>
-    </footer>
+	  {% include header.html active=page.header %}
+    <section>{{ content }}</section>
+    <footer></footer>
   </body>
+  <style>
+    header {
+	    display:flex;
+	    flex-direction: row;
+	    align-items:center;
+	    justify-content:  space-between;
+	    padding-right: 1em;
+
+    }
+    nav{
+	    display:flex;
+	    gap: 1.5em;
+    }
+  </style>
 </html>
