@@ -7,19 +7,6 @@
     {% include favicon.html %}
     <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}" />
     <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}" />
-    <style>
-      header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: 1em;
-      }
-      nav {
-        display: flex;
-        gap: 1.5em;
-      }
-    </style>
   </head>
   <body>
     {% include header.html active=page.header %}

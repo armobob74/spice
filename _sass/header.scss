@@ -1,10 +1,21 @@
-@import 'variables';
+@import "variables";
+@import "hamburger";
 header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1em;
   .active {
     color: gray;
   }
-  nav a {
-    color: black;
+  nav {
+    box-sizing: border-box;
+    display: flex;
+    gap: 1.5em;
+    a {
+      color: black;
+    }
   }
   background-color: $bg-light;
   h1 {
@@ -12,5 +23,38 @@ header {
   }
   span {
     color: rgb(85, 85, 85);
+  }
+  .hamburger {
+    display: none;
+  }
+}
+
+// font size is handled in mobile.scss
+@media only screen and (max-device-width: 800px) {
+  header {
+    .hamburger {
+      display: block;
+      z-index:4;
+    }
+    nav {
+      position: absolute;
+      right: 0;
+      transition: all 0.4s;
+      height: 100vh;
+      width: 100vw;
+      z-index: 3;
+      background-color: $bg-light;
+    }
+    nav.active {
+      top: 0;
+      border: solid 8px black;
+      border-image: $saferspices-gradient 60;
+      flex-direction: column;
+      align-items:center;
+      justify-content: space-evenly;
+    }
+    nav:not(.active) {
+      top: -100vh;
+    }
   }
 }
