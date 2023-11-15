@@ -4,4 +4,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+Sitemap: https://saferspices.com/sitemap.xml
