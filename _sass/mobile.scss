@@ -1,4 +1,4 @@
-$mobile-header-font-size: 5vw;
+$mobile-h1-font-size: 5vw;
 $mobile-root-font-size: 4vw;
 // define in terms of rem instead of vw to preserve zoomability 
 $mobile-th-font-size: 1rem;
@@ -12,7 +12,7 @@ $mobile-td-font-size: 1rem;
 		font-size: $mobile-td-font-size;
 	}
 	h1 {
-	font-size:$mobile-header-font-size;
+	font-size:$mobile-h1-font-size;
 	}
 	th {
 		padding:0px;

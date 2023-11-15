@@ -1,14 +1,16 @@
-$bar-height: 4px;
-$bar-gap: 6px;
+$bar-height: 0.2em;
+$bar-width: 1.8em;
+$bar-gap: 0.5em;
 $bar-color: black;
 $move-len: $bar-height + $bar-gap;
 
 .hamburger {
   border-radius: 2px;
   background: none;
+  margin: 0.5em 0em;
 
   .btn {
-    width: 24px;
+    width: $bar-width;
     cursor: pointer;
   }
 

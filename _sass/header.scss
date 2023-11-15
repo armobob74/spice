@@ -1,5 +1,8 @@
 @import "variables";
 @import "hamburger";
+
+$mobile-nav-gap:3rem;
+$mobile-nav-font-size:1.4rem;
 header {
   display: flex;
   flex-direction: row;
@@ -29,7 +32,6 @@ header {
   }
 }
 
-// font size is handled in mobile.scss
 @media only screen and (max-device-width: 800px) {
   header {
     .hamburger {
@@ -44,14 +46,18 @@ header {
       width: 100vw;
       z-index: 3;
       background-color: $bg-light;
+      font-size:$mobile-nav-font-size;
+
     }
     nav.active {
       top: 0;
-      border: solid 8px black;
+      border: solid 12px black;
       border-image: $saferspices-gradient 60;
       flex-direction: column;
       align-items:center;
-      justify-content: space-evenly;
+      justify-content: flex-start;
+      padding-top:$mobile-nav-gap;
+      gap:$mobile-nav-gap;
     }
     nav:not(.active) {
       top: -100vh;
