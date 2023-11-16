@@ -19,8 +19,10 @@ title: FAQ
 header: FAQ
 ---
 
-<div id="accordion-border">
-  <div id="accordion-container">
-  {% include accordion.html %}
-  </div>
+<div id="accordion-centerer">
+    <div id="accordion-border">
+        <div id="accordion-container">
+        {% include accordion.html %}
+        </div>
+    </div>
 </div>

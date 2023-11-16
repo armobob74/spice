@@ -5,13 +5,19 @@
 $border-width: 5px;
 
 section {
-  padding: 0.5em;
-  #accordion-border {
-    background: $saferspices-gradient;
-    padding: $border-width;
-    #accordion-container {
-      padding: 1em;
-      background-color: $bg-light;
+  display: flex;
+  justify-content: center;
+  #accordion-centerer {
+    padding: 0.5em;
+    max-width: 1000px;
+    width: 100%;
+    #accordion-border {
+      background: $saferspices-gradient;
+      padding: $border-width;
+      #accordion-container {
+        padding: 1em;
+        background-color: $bg-light;
+      }
     }
   }
 }

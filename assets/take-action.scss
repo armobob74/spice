@@ -5,9 +5,14 @@
 
 $border-width: 5px;
 
-#letter-container {
-  background: $bg-light;
-  padding: 1em;
+section {
+  display: flex;
+  justify-content: center;
+  #letter-container {
+    background: $bg-light;
+    padding: 1em;
+    max-width:1000px;
+  }
 }
 
 //basically a border
@@ -20,4 +25,3 @@ $border-width: 5px;
   padding: 1em;
   background-color: $bg-light;
 }
-
