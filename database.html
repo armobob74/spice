@@ -1,0 +1,217 @@
+---
+layout: default
+title: Database
+header: Database
+stylesheet: /assets/main.css
+description: Discover our spice test database with detailed lead levels in various brands. Interactive features enable easy sorting and filtering of key data.
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        <div>
+          <div class="label-holder">
+            {% include sort_button.html col=0 %}
+            <label for="filter-date">Tested On</label>
+          </div>
+          <input
+            type="text"
+            name="filter-date"
+            id="filter-date"
+            oninput="filterTable()"
+            placeholder="filter..."
+          />
+        </div>
+      </th>
+      <th>
+        <div>
+          <div class="label-holder">
+            {% include sort_button.html col=1%}
+            <label for="filter-product">Product Name</label>
+          </div>
+          <input
+            type="text"
+            min="0"
+            max="4"
+            name="filter-product"
+            id="filter-product"
+            oninput="filterTable()"
+            placeholder="filter..."
+          />
+        </div>
+      </th>
+      <th>
+        <div>
+          <div class="label-holder">
+            {% include sort_button.html col=2%}
+            <label for="filter-brand">Brand</label>
+          </div>
+          <input
+            type="text"
+            name="filter-brand"
+            id="filter-brand"
+            oninput="filterTable()"
+            placeholder="filter..."
+          />
+        </div>
+      </th>
+      <th>
+        <div>
+          <div class="label-holder">
+            {% include sort_button.html col=3%}
+            <label for="filter-result">Lead level (ppb)</label>
+          </div>
+          <input
+            type="text"
+            name="filter-result"
+            id="filter-result"
+            oninput="filterTable()"
+            placeholder="filter..."
+          />
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in site.data.ny_ag.output.lead_data %}
+    <tr>
+      <td class="assign-date-sortval">{{ row['Test date'] }}</td>
+      <td>{{ row['Product name'] }}</td>
+      <td>{{ row['Brand'] }}</td>
+      <td class="assign-danger-level">{{ row['Lead level'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script src="/static/javascript/color_picking.js"></script>
+<script src="/static/javascript/utils.js"></script>
+<script>
+  function removeExistingHighlights() {
+    document.querySelectorAll(".highlight").forEach((highlight) => {
+      const parent = highlight.parentNode;
+      while (highlight.firstChild) {
+        parent.insertBefore(highlight.firstChild, highlight);
+      }
+      parent.removeChild(highlight);
+    });
+  }
+
+  function highlightText(textContainer, filter) {
+    const textContent = textContainer.textContent || textContainer.innerText;
+    const index = textContent.toUpperCase().indexOf(filter.toUpperCase());
+
+    if (index >= 0) {
+      let beforeMatch = textContent.substring(0, index);
+      let match = textContent.substring(index, index + filter.length);
+      let afterMatch = textContent.substring(index + filter.length);
+
+      textContainer.innerHTML =
+        beforeMatch +
+        "<span class='highlight'>" +
+        match +
+        "</span>" +
+        afterMatch;
+    }
+  }
+
+  function filterAndHighlightRow(tr, td, filter) {
+    if (td) {
+      const txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr.style.display = "";
+        filter && highlightText(td, filter);
+      } else {
+        tr.style.display = "none";
+      }
+    }
+  }
+
+  function filterTable() {
+    const table = document.querySelector("table");
+    const tr = table.getElementsByTagName("tr");
+    const filters = document.querySelectorAll("input[id^='filter-']");
+
+    removeExistingHighlights();
+
+    for (let i = 1; i < tr.length; i++) {
+      let tds = tr[i].getElementsByTagName("td");
+      let shouldDisplay = true;
+
+      filters.forEach((filterInput, idx) => {
+        const filterText = filterInput.value.toUpperCase();
+        const td = tds[idx];
+
+        let columnMatches =
+          !filterText ||
+          (td && td.textContent.toUpperCase().indexOf(filterText) > -1);
+        if (filterText && td) {
+          highlightText(td, filterText);
+        }
+
+        if (!columnMatches) {
+          shouldDisplay = false;
+        }
+      });
+
+      tr[i].style.display = shouldDisplay ? "" : "none";
+    }
+  }
+
+  // determine the colors and sort values of the ppb column
+  let elements_need_danger = document.querySelectorAll(".assign-danger-level");
+  for (element of elements_need_danger) {
+    let ppb = parseFloat(element.innerText);
+    let max_ppb = 146000;
+    if (!ppb) {
+      ppb = 0;
+      element.setAttribute("sortval", ppb);
+    } else if (ppb > max_ppb) {
+      ppb = max_ppb; // the highest value on the color-picker interpolation array
+    }
+    let percentile = determinePercentile(ppb);
+    let cell_bg = pickColor(percentile);
+    element.style.backgroundColor = cell_bg;
+    element.style.color = pickTextColor(cell_bg);
+  }
+
+  document.querySelectorAll("button.sort-button").forEach((sort_btn) =>
+    sort_btn.addEventListener("click", () => {
+      const col = Number(sort_btn.getAttribute("col"));
+      const table = document.querySelector("table");
+      const tbody = table.getElementsByTagName("tbody")[0];
+      const rows = Array.from(tbody.getElementsByTagName("tr"));
+
+      let sortOrder;
+      if (sort_btn.classList.contains("ascending")) {
+        sortOrder = 1;
+      } else {
+        sortOrder = -1;
+      }
+      sort_btn.classList.toggle("ascending");
+
+      const sortedRows = rows.sort((a, b) => {
+        const aText =
+          a.getElementsByTagName("td")[col].getAttribute("sortval") ||
+          a.getElementsByTagName("td")[col].innerText ||
+          a.getElementsByTagName("td")[col].textContent;
+        const bText =
+          b.getElementsByTagName("td")[col].getAttribute("sortval") ||
+          b.getElementsByTagName("td")[col].innerText ||
+          b.getElementsByTagName("td")[col].textContent;
+        return (
+          aText.localeCompare(bText, undefined, { numeric: true }) * sortOrder
+        );
+      });
+
+      for (const row of sortedRows) {
+        tbody.appendChild(row);
+      }
+    })
+  );
+
+  document.querySelectorAll(".assign-date-sortval").forEach((element) => {
+	  element.setAttribute('sortval', parseDate(element.innerText))
+  });
+</script>

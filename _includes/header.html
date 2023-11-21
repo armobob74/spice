@@ -2,7 +2,7 @@
   <h1><strong>Safer Spices</strong> <span>{{ include.active }}</span></h1>
   {% include hamburger.html %}
   <nav>
-    <a href="/" {% if include.active == 'Database' %}class="active"{% endif %}>Database</a>
+    <a href="/database" {% if include.active == 'Database' %}class="active"{% endif %}>Database</a>
     <a href="/pages/faq" {% if include.active == 'FAQ' %}class="active"{% endif %}>FAQ</a>
     <a href="/pages/take-action" {% if include.active == 'Take Action' %}class="active"{% endif %}>Take Action</a>
   </nav>

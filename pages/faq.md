@@ -1,7 +1,7 @@
 ---
 accordion:
   - title: What is this website about?
-    content: This website is dedicated to raising awareness and providing information about the presence of heavy metals, like lead, in spices. Our goal is to educate consumers and advocate for stricter regulation and testing by the FDA for spices. We provide an easily accessible <a href="/">database</a> which compiles and presents data from numerous tests examining the concentration of heavy metals in a range of popular spice brands.
+    content: This website is dedicated to raising awareness and providing information about the presence of heavy metals, like lead, in spices. Our goal is to educate consumers and advocate for stricter regulation and testing by the FDA for spices. We provide an easily accessible <a href="/database">database</a> which compiles and presents data from numerous tests examining the concentration of heavy metals in a range of popular spice brands.
   - title: Where does the test data come from?
     content: The data for this website comes entirely from the New York State Department of Agriculture and Markets. It was obtained through a Freedom of Information Act request.
   - title: What's PPB?

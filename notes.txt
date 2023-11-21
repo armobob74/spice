@@ -5,3 +5,8 @@ deciding to use Jekyll because:
 	1) it's simple and made for static site rendering
 	2) similar to jinja2
 	3) easy to use from Linux, unlike Svelte
+
+TODO:
+	landing page: 
+		"50% of spices contain over X ppb of lead"
+			[view database] [take action]
