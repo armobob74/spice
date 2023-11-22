@@ -27,6 +27,33 @@ function determinePercentile(lead_level) {
     }
   }
 }
+function determineLead(percentile) {
+  if (percentile < 0 || percentile > 100) {
+    throw new Error("Percentile must be between 0 and 100");
+  }
+
+  for (let i = 0; i < percentiles.length; i++) {
+    if (percentile <= percentiles[i]) {
+      if (i === 0) {
+        return lead_values[i];
+      } else {
+        const lowerPercentile = percentiles[i - 1];
+        const upperPercentile = percentiles[i];
+        const lowerValue = lead_values[i - 1];
+        const upperValue = lead_values[i];
+
+        // Calculate the lead value using linear interpolation
+        const lead_value =
+          lowerValue +
+          ((upperValue - lowerValue) * (percentile - lowerPercentile)) /
+            (upperPercentile - lowerPercentile);
+
+        return lead_value;
+      }
+    }
+  }
+}
+
 
 let danger_colors = [
   "#a8e6cf" /* Soft Green */,

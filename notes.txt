@@ -8,5 +8,8 @@ deciding to use Jekyll because:
 
 TODO:
 	landing page: 
-		"50% of spices contain over X ppb of lead"
+		"50% of spices contain over 212 ppb of lead"
 			[view database] [take action]
+	relevant percentiles:
+		50 -- 212
+		70 -- 405

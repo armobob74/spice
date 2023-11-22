@@ -1,14 +1,78 @@
 ---
 layout: default
 title: Home
-header: 
+header:
 stylesheet: /assets/main.css
 description: Discover our spice test database with detailed lead levels in various brands. Interactive features enable easy sorting and filtering of key data.
 ---
+
 <div id="picturebox">
-	<h1>50% of spices contain over X ppb of lead</h1>
-	<div id="actions">
-		<a href="/database">View Database</a>
-		<a href="/pages/take-action.html">Take Action</a>
-	</div>
+  <div id="tagline-holder">
+    <h1>
+      <span id="percentile-container"
+        ><span id="percentile-val">50</span>%</span
+      >
+      of spices contain over
+      <span id="ppb-container"><span id="ppb-val">212.0</span> ppb</span> of lead
+    </h1>
+    <div id="actions">
+      <a href="/database">View Database</a>
+      <a href="/pages/take-action.html">Take Action</a>
+    </div>
+  </div>
+  <div id="slider-holder">
+    <input id="slider" type="range" min="0" max="100" />
+  </div>
 </div>
+<script src="/static/javascript/color_picking.js"></script>
+<script src="/static/javascript/utils.js"></script>
+<script>
+  let ppb = document.getElementById("ppb-val");
+  let percentile = document.getElementById("percentile-val");
+  percentile.innerText = 50;
+  let slider = document.querySelector("#slider");
+  function setTagline(){
+    let value = slider.value;
+    let color = pickColor(value);
+    ppb.style.color = color;
+    ppb.innerText = determineLead(value).toFixed(1);
+    percentile.innerText = (100 - value).toFixed(0);
+  }
+  setTagline()
+  slider.addEventListener("input", setTagline);
+</script>
+<style>
+  #picturebox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #slider-holder {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #slider {
+    width: 80%;
+  }
+  #tagline-holder {
+  }
+  @media only screen and (max-device-width: 800px) {
+    #picturebox {
+      flex-direction: column;
+      justify-content: space-around;
+      height: 90vh;
+    }
+
+  #slider-holder {
+	  flex-grow:1;
+  }
+  #tagline-holder {
+	  flex-grow:1;
+	  display:flex;
+	  flex-direction:column;
+	  justify-content:center;
+  }
+</style>
