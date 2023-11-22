@@ -13,7 +13,8 @@ description: Discover our spice test database with detailed lead levels in vario
         ><span id="percentile-val">50</span>%</span
       >
       of spices contain over
-      <span id="ppb-container"><span id="ppb-val">212.0</span> ppb</span> of lead
+      <span id="ppb-container"><span id="ppb-val">212.0</span> ppb</span> of
+      lead
     </h1>
     <div id="actions">
       <a href="/database">View Database</a>
@@ -21,6 +22,7 @@ description: Discover our spice test database with detailed lead levels in vario
     </div>
   </div>
   <div id="slider-holder">
+    <canvas width="600" height="400"></canvas>
     <input id="slider" type="range" min="0" max="100" />
   </div>
 </div>
@@ -31,48 +33,51 @@ description: Discover our spice test database with detailed lead levels in vario
   let percentile = document.getElementById("percentile-val");
   percentile.innerText = 50;
   let slider = document.querySelector("#slider");
-  function setTagline(){
+  function setTagline() {
     let value = slider.value;
     let color = pickColor(value);
     ppb.style.color = color;
     ppb.innerText = determineLead(value).toFixed(1);
     percentile.innerText = (100 - value).toFixed(0);
   }
-  setTagline()
+  setTagline();
   slider.addEventListener("input", setTagline);
-</script>
-<style>
-  #picturebox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
 
-  #slider-holder {
-    flex-grow: 3;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  /* canvas stuff */
+  let canvas = document.querySelector("canvas");
+  let ctx = canvas.getContext("2d");
+  const stdDeviation = 100;
+  const bar_width = 3;
+  function gaussian(x) {
+    return Math.exp(
+      -Math.pow(x - canvas.width / 2, 2) / (2 * stdDeviation * stdDeviation)
+    );
   }
-  #slider {
-    width: 80%;
-  }
-  #tagline-holder {
-  }
-  @media only screen and (max-device-width: 800px) {
-    #picturebox {
-      flex-direction: column;
-      justify-content: space-around;
-      height: 90vh;
+  function drawCurve() {
+    const width = canvas.width;
+    const height = canvas.height;
+    const mean = width * (slider.value / 100);
+    // Filling the left half under the curve with black
+    for (let x = 0; x < mean; x++) {
+      const y = gaussian(x);
+      const yPos = height - y * height; // Scale to canvas height
+      ctx.fillStyle = pickColor((100 * x) / width);
+      ctx.fillRect(x, yPos, 1, height - yPos);
     }
-
-  #slider-holder {
-	  flex-grow:1;
+    for (let x = mean; x < mean + bar_width; x++) {
+      const y = gaussian(x);
+      const yPos = height - y * height; // Scale to canvas height
+      ctx.fillStyle = "black";
+      ctx.fillRect(x, yPos, 1, height - yPos);
+    }
+    // Filling the right half under the curve with white
+    for (let x = mean + bar_width; x < width; x++) {
+      const y = gaussian(x);
+      const yPos = height - y * height; // Scale to canvas height
+      ctx.fillStyle = pickColor((100 * x) / width);
+      ctx.fillRect(x, yPos, 1, height - yPos);
+    }
   }
-  #tagline-holder {
-	  flex-grow:1;
-	  display:flex;
-	  flex-direction:column;
-	  justify-content:center;
-  }
-</style>
+  drawCurve();
+  slider.addEventListener("input", drawCurve);
+</script>
