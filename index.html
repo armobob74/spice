@@ -22,8 +22,8 @@ description: Discover our spice test database with detailed lead levels in vario
     </div>
   </div>
   <div id="slider-holder">
-    <canvas width="600" height="400"></canvas>
-    <input id="slider" type="range" min="0" max="100" />
+    <canvas width="1500" height="1000"> </canvas>
+    <input id="slider" type="range" min="0" max="300" />
   </div>
 </div>
 <script src="/static/javascript/color_picking.js"></script>
@@ -34,11 +34,11 @@ description: Discover our spice test database with detailed lead levels in vario
   percentile.innerText = 50;
   let slider = document.querySelector("#slider");
   function setTagline() {
-    let value = slider.value;
-    let color = pickColor(value);
+    let percent = 100 * (slider.value / slider.max);
+    let color = pickColor(percent);
     ppb.style.color = color;
-    ppb.innerText = determineLead(value).toFixed(1);
-    percentile.innerText = (100 - value).toFixed(0);
+    ppb.innerText = determineLead(percent).toFixed(1);
+    percentile.innerText = 100 - percent.toFixed(0);
   }
   setTagline();
   slider.addEventListener("input", setTagline);
@@ -46,38 +46,91 @@ description: Discover our spice test database with detailed lead levels in vario
   /* canvas stuff */
   let canvas = document.querySelector("canvas");
   let ctx = canvas.getContext("2d");
-  const stdDeviation = 100;
-  const bar_width = 3;
+  const actual_stdDeviation = 771; //actual stdev is 771 ppb
+  const visual_std = canvas.width / 5;
+  const bar_width = 10;
   function gaussian(x) {
-    return Math.exp(
-      -Math.pow(x - canvas.width / 2, 2) / (2 * stdDeviation * stdDeviation)
-    );
+    return Math.exp(-Math.pow(x - canvas.width / 2, 2) / (2 * visual_std ** 2));
+  }
+  function fillCurveSection(startX, endX, colorFunc) {
+    const height = canvas.height;
+    for (let x = startX; x < endX; x++) {
+      const y = gaussian(x);
+      const yPos = height - y * height; // Scale to canvas height
+      ctx.fillStyle = colorFunc(x);
+      ctx.fillRect(x, yPos, 1, height - yPos);
+    }
   }
   function drawCurve() {
     const width = canvas.width;
     const height = canvas.height;
-    const mean = width * (slider.value / 100);
-    // Filling the left half under the curve with black
-    for (let x = 0; x < mean; x++) {
-      const y = gaussian(x);
-      const yPos = height - y * height; // Scale to canvas height
-      ctx.fillStyle = pickColor((100 * x) / width);
-      ctx.fillRect(x, yPos, 1, height - yPos);
-    }
-    for (let x = mean; x < mean + bar_width; x++) {
-      const y = gaussian(x);
-      const yPos = height - y * height; // Scale to canvas height
-      ctx.fillStyle = "black";
-      ctx.fillRect(x, yPos, 1, height - yPos);
-    }
-    // Filling the right half under the curve with white
-    for (let x = mean + bar_width; x < width; x++) {
-      const y = gaussian(x);
-      const yPos = height - y * height; // Scale to canvas height
-      ctx.fillStyle = pickColor((100 * x) / width);
-      ctx.fillRect(x, yPos, 1, height - yPos);
-    }
+    const bar_mid = width * (slider.value / slider.max);
+
+    const bar_left = Math.floor(bar_mid - bar_width / 2);
+    const bar_right = Math.ceil(bar_mid + bar_width / 2);
+
+    // Filling the left half under the curve
+    fillCurveSection(0, bar_left, (x) => pickColor((100 * x) / width));
+
+    fillCurveSection(bar_left, bar_right, () => "black");
+
+    // Filling the right half under the curve
+    fillCurveSection(bar_right, width, (x) => pickColor((100 * x) / width));
   }
   drawCurve();
-  slider.addEventListener("input", drawCurve);
+
+  /* canvas click logic */
+  let isDragging = false;
+  function getMousePos(evt) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top,
+    };
+  }
+  function getBarCoordinates() {
+    //calculate the pixel values that are actually on screen instead of the ones that are theoretical canvas pixels
+    // padding makes surface more clickable
+    let rect = canvas.getBoundingClientRect();
+    let adjustment_factor = rect.width / canvas.width;
+    let bar_mid = rect.width * (slider.value / slider.max);
+    let padding = 20; //px
+    let adjusted_width = padding + bar_width * adjustment_factor;
+    const bar_left = Math.floor(bar_mid - adjusted_width / 2);
+    const bar_right = Math.ceil(bar_mid + adjusted_width / 2);
+    return { left: bar_left, mid: bar_mid, right: bar_right };
+  }
+  canvas.addEventListener("mousedown", function (evt) {
+    const mousePos = getMousePos(evt);
+
+    const bar = getBarCoordinates();
+    if (mousePos.x >= bar.left && mousePos.x <= bar.right) {
+      isDragging = true;
+    }
+  });
+
+  canvas.addEventListener("mousemove", function (evt) {
+    const mousePos = getMousePos(evt);
+
+    const bar = getBarCoordinates();
+    if (mousePos.x >= bar.left && mousePos.x <= bar.right) {
+      canvas.style.cursor = "move";
+    } else {
+      canvas.style.cursor = "";
+    }
+    if (isDragging) {
+      slider.value =
+        (mousePos.x / canvas.getBoundingClientRect().width) * slider.max;
+      drawCurve();
+      setTagline();
+    }
+  });
+
+  canvas.addEventListener("mouseup", function (evt) {
+    isDragging = false;
+  });
+
+  canvas.addEventListener("mouseleave", function (evt) {
+    isDragging = false;
+  });
 </script>
