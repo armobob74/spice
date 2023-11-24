@@ -1,8 +1,8 @@
 @import "variables";
 @import "hamburger";
 
-$mobile-nav-gap:3rem;
-$mobile-nav-font-size:1.4rem;
+$mobile-nav-gap: 3rem;
+$mobile-nav-font-size: 1.4rem;
 header {
   display: flex;
   flex-direction: row;
@@ -23,6 +23,12 @@ header {
   background-color: $bg-light;
   h1 {
     margin: 0;
+    .logo {
+      color: black;
+      &:hover {
+	      text-decoration:none;
+      }
+    }
   }
   span {
     color: rgb(85, 85, 85);
@@ -36,7 +42,7 @@ header {
   header {
     .hamburger {
       display: block;
-      z-index:4;
+      z-index: 4;
     }
     nav {
       position: absolute;
@@ -46,18 +52,17 @@ header {
       width: 100vw;
       z-index: 3;
       background-color: $bg-light;
-      font-size:$mobile-nav-font-size;
-
+      font-size: $mobile-nav-font-size;
     }
     nav.active {
       top: 0;
       border: solid 12px black;
       border-image: $saferspices-gradient 60;
       flex-direction: column;
-      align-items:center;
+      align-items: center;
       justify-content: flex-start;
-      padding-top:$mobile-nav-gap;
-      gap:$mobile-nav-gap;
+      padding-top: $mobile-nav-gap;
+      gap: $mobile-nav-gap;
     }
     nav:not(.active) {
       top: -100vh;
