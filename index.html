@@ -37,6 +37,7 @@ description: Discover our spice test database with detailed lead levels in vario
     let percent = 100 * (slider.value / slider.max);
     let color = pickColor(percent);
     ppb.style.color = color;
+    //picturebox.style.backgroundColor = color;
     ppb.innerText = determineLead(percent).toFixed(1);
     percentile.innerText = 100 - percent.toFixed(0);
   }
@@ -69,12 +70,8 @@ description: Discover our spice test database with detailed lead levels in vario
     const bar_left = Math.floor(bar_mid - bar_width / 2);
     const bar_right = Math.ceil(bar_mid + bar_width / 2);
 
-    // Filling the left half under the curve
     fillCurveSection(0, bar_left, (x) => pickColor((100 * x) / width));
-
     fillCurveSection(bar_left, bar_right, () => "black");
-
-    // Filling the right half under the curve
     fillCurveSection(bar_right, width, (x) => pickColor((100 * x) / width));
   }
   drawCurve();
@@ -109,9 +106,17 @@ description: Discover our spice test database with detailed lead levels in vario
     }
   });
 
+  canvas.addEventListener("click", function (evt) {
+    const mousePos = getMousePos(evt);
+    slider.value =
+      (mousePos.x / canvas.getBoundingClientRect().width) * slider.max;
+    drawCurve();
+    setTagline();
+      canvas.style.cursor = "move";
+  });
+
   canvas.addEventListener("mousemove", function (evt) {
     const mousePos = getMousePos(evt);
-
     const bar = getBarCoordinates();
     if (mousePos.x >= bar.left && mousePos.x <= bar.right) {
       canvas.style.cursor = "move";
