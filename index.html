@@ -112,7 +112,7 @@ description: Discover our spice test database with detailed lead levels in vario
       (mousePos.x / canvas.getBoundingClientRect().width) * slider.max;
     drawCurve();
     setTagline();
-      canvas.style.cursor = "move";
+    canvas.style.cursor = "move";
   });
 
   canvas.addEventListener("mousemove", function (evt) {
@@ -136,6 +136,41 @@ description: Discover our spice test database with detailed lead levels in vario
   });
 
   canvas.addEventListener("mouseleave", function (evt) {
+    isDragging = false;
+  });
+
+  /* mobile canvas stuff */
+  canvas.addEventListener("touchstart", function (evt) {
+    const touchPos = getTouchPos(evt.touches[0]);
+    const bar = getBarCoordinates();
+
+    if (touchPos.x >= bar.left && touchPos.x <= bar.right) {
+      isDragging = true;
+    }
+  });
+
+  function getTouchPos(touch) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    };
+  }
+  canvas.addEventListener("touchmove", function (evt) {
+    evt.preventDefault(); // Prevent scrolling and other default touch behaviors
+    if (isDragging) {
+      const touchPos = getTouchPos(evt.touches[0]);
+      slider.value =
+        (touchPos.x / canvas.getBoundingClientRect().width) * slider.max;
+      drawCurve();
+      setTagline();
+    }
+  });
+  canvas.addEventListener("touchend", function () {
+    isDragging = false;
+  });
+
+  canvas.addEventListener("touchcancel", function () {
     isDragging = false;
   });
 </script>
