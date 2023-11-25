@@ -49,7 +49,7 @@ description: Discover our spice test database with detailed lead levels in vario
   let ctx = canvas.getContext("2d");
   const actual_stdDeviation = 771; //actual stdev is 771 ppb
   const visual_std = canvas.width / 5;
-  const bar_width = 10;
+  const bar_width = 15;
   function gaussian(x) {
     return Math.exp(-Math.pow(x - canvas.width / 2, 2) / (2 * visual_std ** 2));
   }
@@ -70,8 +70,13 @@ description: Discover our spice test database with detailed lead levels in vario
     const bar_left = Math.floor(bar_mid - bar_width / 2);
     const bar_right = Math.ceil(bar_mid + bar_width / 2);
 
+    // fill left side of curve
     fillCurveSection(0, bar_left, (x) => pickColor((100 * x) / width));
-    fillCurveSection(bar_left, bar_right, () => "black");
+    // draw vertical bar
+    fillCurveSection(bar_left, bar_right, (x) =>
+      darken(pickColor((100 * x) / width), (percent = 60))
+    );
+    // fill right side of curve
     fillCurveSection(bar_right, width, (x) => pickColor((100 * x) / width));
   }
   drawCurve();

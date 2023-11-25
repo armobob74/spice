@@ -133,3 +133,34 @@ function pickTextColor(bgColor) {
     return "#FFFFFF"; // White
   }
 }
+
+function lighten(color, percent) {
+    // First, convert the hex color to RGB
+    let { r, g, b } = hexToRGB(color);
+
+    // Ensure the percentage is within the range [0, 100]
+    percent = Math.min(Math.max(percent, 0), 100);
+
+    // Lighten each color component by the given percentage
+    r = Math.min(Math.round(r + (255 - r) * (percent / 100)), 255);
+    g = Math.min(Math.round(g + (255 - g) * (percent / 100)), 255);
+    b = Math.min(Math.round(b + (255 - b) * (percent / 100)), 255);
+
+    // Convert the lightened RGB color back to hex and return it
+    return rgbToHex(r, g, b);
+}
+function darken(color, percent) {
+    // First, convert the hex color to RGB
+    let { r, g, b } = hexToRGB(color);
+
+    // Ensure the percentage is within the range [0, 100]
+    percent = Math.min(Math.max(percent, 0), 100);
+
+    // Darken each color component by the given percentage
+    r = Math.max(Math.round(r * (1 - percent / 100)), 0);
+    g = Math.max(Math.round(g * (1 - percent / 100)), 0);
+    b = Math.max(Math.round(b * (1 - percent / 100)), 0);
+
+    // Convert the darkened RGB color back to hex and return it
+    return rgbToHex(r, g, b);
+}
