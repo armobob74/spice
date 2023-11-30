@@ -17,8 +17,8 @@ description: Discover our spice test database with detailed lead levels in vario
       lead
     </h1>
     <div id="actions">
-      <a href="/database">View Database</a>
       <a href="/pages/take-action.html">Take Action</a>
+      <a href="/database">View Database</a>
     </div>
   </div>
   <div id="slider-holder">
@@ -40,7 +40,9 @@ description: Discover our spice test database with detailed lead levels in vario
     //picturebox.style.backgroundColor = color;
     ppb.innerText = determineLead(percent).toFixed(1);
     percentile.innerText = 100 - percent.toFixed(0);
+	  document.documentElement.style.setProperty('--active-gradient-color', color);
   }
+
   setTagline();
   slider.addEventListener("input", setTagline);
 

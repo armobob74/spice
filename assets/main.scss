@@ -45,6 +45,32 @@ th {
   flex-direction: column;
   justify-content: space-between;
   background: $bg-light;
+  #actions {
+    a {
+      vertical-align: middle;
+      padding: 0.7em;
+      display: inline-block;
+      text-decoration: none;
+      border: solid 1px black;
+      border-radius: 1em;
+      text-align: center;
+      line-height: 1em;
+      transition: 0.15s;
+    }
+    a:nth-child(1) {
+      color: black;
+    }
+    a:nth-child(2) {
+      color: white;
+      background-color: black;
+    }
+    a:hover {
+      background-color: $danger-0-bg;// $danger-0-bg;
+      border-color: $danger-0-bg;
+      color: black;
+      box-shadow:none;
+    }
+  }
   #slider-holder {
     flex-grow: 1;
     display: flex;
@@ -54,7 +80,7 @@ th {
     canvas {
       width: 100%;
       height: 60vh;
-      border-bottom:solid 2px black;
+      border-bottom: solid 2px black;
     }
   }
   #slider {
