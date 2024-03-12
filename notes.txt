@@ -6,10 +6,11 @@ deciding to use Jekyll because:
 	2) similar to jinja2
 	3) easy to use from Linux, unlike Svelte
 
-TODO:
-	landing page: 
-		"50% of spices contain over 212 ppb of lead"
-			[view database] [take action]
-	relevant percentiles:
-		50 -- 212
-		70 -- 405
+Sat, 01-27-2024:
+    Gonna add a blog! Here are some ideas for topics:
+    "The Global Challenge of Leaded Turmeric"
+    "30% of household spices contain over 400 ppb of lead"
+
+Tue, 03-12-2024:
+	"5 spices with the lowest lead contents"
+	"5 spices with the highest lead contents"
