@@ -7,7 +7,7 @@ accordion:
   - title: What's PPB?
     content: PPB stands for Parts Per Billion, a unit of measurement used to quantify the concentration of substances, such as heavy metals, in various products, including spices. It indicates how many units of a substance are present in a billion units of the total mixture. Understanding PPB is crucial when discussing the safety and quality of spices.
   - title: How much lead is safe?
-    content: <a href="https://www.fda.gov/food/environmental-contaminants-food/lead-food-foodwares-and-dietary-supplements">Here</a> is the FDA's page on lead in food. The current max level allowed in candy is 100 PPB. Regulations do not exist for spices specifically, but no level is considered "safe".
+    content: <a href="https://www.fda.gov/food/environmental-contaminants-food/lead-food-foodwares-and-dietary-supplements">Here</a> is the FDA's page on lead in food. The current max level allowed in candy is 100 PPB. FDA regulations do not exist for spices specifically, but no level is considered "safe". <a href="https://www.cps.bureauveritas.com/newsroom/new-york-monitors-heavy-metal-content-spices">New York State</a> implements a Class II recall action level of 210 PPB. Roughly half of the tests in our database exceed this action level.
   - title: Why do so many samples have detectable levels of heavy metals?
     content: The FDA currently does not regulate heavy metals in spices. The mission of this website is to change that.
   - title: Can I do anything to help?
