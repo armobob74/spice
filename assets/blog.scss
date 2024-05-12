@@ -11,21 +11,47 @@ body {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  #article-centerer {
-    box-sizing: border-box;
-    padding: 0.5em;
-    width: 100%;
-    display:flex;
-    align-items:center;
-    #article-border {
-	    
-      width:100%;
-      background: $saferspices-gradient;
-      padding: $border-width;
-      #article-container {
-        padding: 1em;
-        background-color: $bg-light;
+  #content {
+      box-sizing: border-box;
+	  width:100%;
+	  display:flex;
+	  flex-direction: column;
+	  align-items: center;
+    #article-centerer {
+      box-sizing: border-box;
+      padding: 0.5em;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      #article-border {
+        width: 100%;
+        background: $saferspices-gradient;
+        padding: $border-width;
+        #article-container {
+          padding: 1em;
+          background-color: $bg-light;
+        }
       }
     }
+  }
+}
+
+// Media queries for larger screens
+@media (min-width: 768px) {
+  // Adjust this breakpoint to suit your needs
+  #article-centerer {
+    max-width: 80%; // Prevents the content from stretching too wide
+  }
+}
+
+@media (min-width: 1024px) {
+  #article-centerer {
+    max-width: 75%; // Further reduces width for larger screens
+  }
+}
+
+@media (min-width: 1440px) {
+  #article-centerer {
+    max-width: 60%; // Optimal for large, ultrawide screens
   }
 }
