@@ -1,0 +1,31 @@
+---
+---
+
+// this scss is mobile-first
+
+@import "variables";
+@import "markdown";
+$border-width: 5px;
+
+body {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  #article-centerer {
+    box-sizing: border-box;
+    padding: 0.5em;
+    width: 100%;
+    display:flex;
+    align-items:center;
+    #article-border {
+	    
+      width:100%;
+      background: $saferspices-gradient;
+      padding: $border-width;
+      #article-container {
+        padding: 1em;
+        background-color: $bg-light;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include google_tag.html %}
+    <meta charset="utf-8" />
+    <meta name="description" content="{{page.description | default: site.description }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{site.title}} | {{ page.title }}</title>
+    {% include favicon.html %}
+    <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}" />
+    <link rel="stylesheet" href="{{ 'assets/blog.css' | relative_url }}" />
+    <style>
+    </style>
+  </head>
+  <body>
+    {% if page.header %}
+      {% include header.html active=page.header %}
+    {% else %}
+      {% include header.html active="Blog" %}
+      {% endif %}
+      <div id="article-centerer">
+	      <div id="article-border">
+		      <div id="article-container">
+			      {{ content }}
+		      </div>
+	      </div>
+      </div>
+    <footer></footer>
+  </body>
+</html>

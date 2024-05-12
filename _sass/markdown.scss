@@ -1,0 +1,99 @@
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+
+h1 {
+  font-size: 2.5em; 
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+// Paragraphs
+p {
+  margin-bottom: 1em;
+}
+
+// Links
+a {
+  color: #0074d9;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Lists
+ul, ol {
+  margin-left: 20px;
+  padding-left: 0;
+  
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+// Blockquotes
+blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0.5em 10px;
+  color: #666;
+  font-style: italic;
+}
+
+// Code
+pre, code {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  font-family: 'Courier New', monospace;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 10px;
+  overflow: auto;
+}
+
+// Tables
+table {
+  width: 100%;
+  margin-bottom: 1em;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+}
+
