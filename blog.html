@@ -2,6 +2,18 @@
 layout: default
 title: Blog
 header: Blog
-stylesheet: /assets/main.css
+stylesheet: /assets/blog-index.css
 description: Discover our spice test database with detailed lead levels in various brands. Interactive features enable easy sorting and filtering of key data.
 ---
+<div class="posts">
+  {% for post in site.posts %}
+  <div class="post-border">
+	  <div class="post">
+		  <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+		  <span class="date">{{ post.date | date_to_string }}</span>
+		  <p>{{ post.excerpt }}</p>
+	  </div>
+  </div>
+  {% endfor %}
+</div>
+

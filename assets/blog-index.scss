@@ -1,0 +1,67 @@
+---
+---
+
+@import "variables";
+// Define base and accent colors
+$base-color: #333;
+$accent-color: #0066cc;
+// Body styling
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: $base-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Header and posts container
+.posts {
+  width: 80%;
+  margin: 0 auto;
+}
+
+// Post styling
+.post-border {
+  background: $saferspices-gradient;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   padding:5px;
+    margin-bottom: 2em;
+  .post {
+	  background-color:white;
+    padding: 20px;
+
+    h2 {
+      margin-top: 0;
+      color: $accent-color;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .date {
+      color: darken($base-color, 20%);
+      font-size: 0.9em;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .posts {
+    width: 90%;
+    padding: 0 5%;
+  }
+
+  .post {
+    padding: 10px;
+  }
+}
