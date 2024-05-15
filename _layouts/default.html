@@ -9,6 +9,7 @@
     {% include favicon.html %}
     <link rel="stylesheet" href="{{ 'assets/main.css' | relative_url }}" />
     <link rel="stylesheet" href="{{ page.stylesheet | relative_url }}" />
+    {% include base_pixel.html %}
   </head>
   <body>
     {% include header.html active=page.header %}
